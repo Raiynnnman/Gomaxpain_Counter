@@ -73,29 +73,115 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #ff6600, #ff8800);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-gomax {
+            color: #ff0000;
+            font-weight: 900;
+        }
+
+        .logo-pain {
+            position: relative;
+            background: linear-gradient(90deg, #ff6600, #ffaa00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 900;
+        }
+
+        .logo-pain::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.3) 2px,
+                    rgba(255, 255, 255, 0.3) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(255, 255, 255, 0.2) 3px,
+                    rgba(255, 255, 255, 0.2) 6px
+                );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            pointer-events: none;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #fff;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            position: relative;
         }
 
         .nav-links a:hover {
             color: #ff6600;
+            background: rgba(255, 102, 0, 0.1);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: #ff6600;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #ff6600;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
         }
 
         /* Hero Section */
@@ -385,8 +471,45 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                border-top: 2px solid #ff6600;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                text-align: center;
+                padding: 1rem;
+                border: 1px solid transparent;
+            }
+
+            .nav-links a:hover {
+                border-color: #ff6600;
             }
 
             .hero h1 {
@@ -433,7 +556,7 @@
     <!-- Video Background -->
     <div class="video-background">
         <video autoplay muted loop>
-            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+            <source src="https://www.shutterstock.com/shutterstock/videos/1097167605/preview/stock-footage-close-up-low-angle-a-corpse-with-a-bloody-hand-lying-on-the-floor-and-covered-gruesome-murder.webm" type="video/webm">
             <!-- Fallback background if video doesn't load -->
         </video>
         <div class="video-overlay"></div>
@@ -442,8 +565,17 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">GoMAXPAIN</div>
-            <ul class="nav-links">
+            <a href="#home" class="logo">
+                <span class="logo-text">
+                    <span class="logo-gomax">GoMAX</span><span class="logo-pain">PAIN</span>
+                </span>
+            </a>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#about">About</a></li>
@@ -571,31 +703,36 @@
     </footer>
 
     <script>
-        // Countdown Timer - 30 days from now
+        // Countdown Timer - Set to launch in exactly 30 days from now
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 30); // 30 days from now
+        
         function updateCountdown() {
             const now = new Date().getTime();
-            const targetDate = new Date(now + (30 * 24 * 60 * 60 * 1000)); // 30 days from now
-            const distance = targetDate - now;
+            const distance = launchDate.getTime() - now;
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+            // Update countdown display
             document.getElementById('days').textContent = days.toString().padStart(2, '0');
             document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
             document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
 
-            // Update progress bar
-            const totalSeconds = 30 * 24 * 60 * 60;
-            const remainingSeconds = distance / 1000;
-            const progress = ((totalSeconds - remainingSeconds) / totalSeconds) * 100;
+            // Update progress bar (shows progress towards launch)
+            const totalDuration = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+            const elapsed = totalDuration - distance;
+            const progress = (elapsed / totalDuration) * 100;
             document.getElementById('progress-fill').style.width = Math.min(progress, 100) + '%';
 
+            // Check if countdown is finished
             if (distance < 0) {
                 clearInterval(countdownInterval);
-                document.getElementById('countdown').innerHTML = '<h2>LAUNCHED!</h2>';
+                document.getElementById('countdown').innerHTML = '<h2 style="color: #ff6600; font-size: 3rem;">🚀 LAUNCHED! 🚀</h2>';
+                document.getElementById('progress-fill').style.width = '100%';
             }
         }
 
@@ -662,6 +799,41 @@
             
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger menu
+            const spans = this.querySelectorAll('span');
+            spans.forEach((span, index) => {
+                if (navLinks.classList.contains('active')) {
+                    if (index === 0) span.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    if (index === 1) span.style.opacity = '0';
+                    if (index === 2) span.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                } else {
+                    span.style.transform = 'none';
+                    span.style.opacity = '1';
+                }
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    const spans = mobileMenuToggle.querySelectorAll('span');
+                    spans.forEach(span => {
+                        span.style.transform = 'none';
+                        span.style.opacity = '1';
+                    });
+                }
             });
         });
     </script>
