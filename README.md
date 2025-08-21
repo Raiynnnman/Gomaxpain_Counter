@@ -1,124 +1,268 @@
-# GoMAXPAIN Landing Page
+# 🚑 GoMAXPAIN - Emergency Response & Professional Connection Platform
 
-A modern, responsive landing page for GoMAXPAIN - a real-time digital platform that connects accident victims with trusted doctors and lawyers.
+A fully responsive web application that connects users with medical professionals and legal experts in times of need. Built with React, TypeScript, Tailwind CSS, Node.js, and MongoDB.
 
-## Features
+## ✨ Features
 
-- 🎨 **Modern Design**: Clean and professional appearance with orange/black/white color scheme
-- 📱 **Responsive**: Works perfectly on all devices
-- ⚡ **Fast Loading**: Optimized for performance
-- 🎭 **Smooth Animations**: Engaging scroll animations and hover effects
-- 🕐 **Countdown Timer**: 30-day countdown with progress bar
-- 🎥 **Video Background**: Dynamic video background for enhanced visual appeal
-- 🔧 **Easy to Customize**: Well-structured code for easy modifications
+### 🔐 **Authentication System**
+- User registration and login
+- Email verification flow
+- Password reset functionality
+- JWT-based authentication
+- Secure password hashing
 
-## About GoMAXPAIN
+### 🚀 **User Onboarding**
+- Welcome introduction
+- Feature overview
+- Permission management (Location, Notifications, Camera, Phone)
+- Progressive user experience
 
-GoMAXPAIN is a real-time digital platform that connects victims with trusted doctors and lawyers in the immediate aftermath of an accident.
+### 🏥 **Medical Professionals**
+- Search and filter doctors by specialty
+- View doctor profiles and ratings
+- Book appointments
+- Real-time availability status
 
-**Key Features:**
-- Crash Detection
-- Trusted Doctors Connection
-- Expert Lawyers Connection
-- Real-time Connection
-- Maximum Support
-- Digital Platform
+### ⚖️ **Legal Experts**
+- Find lawyers by practice area
+- View experience and credentials
+- Schedule consultations
+- Professional ratings and reviews
 
-**Tagline:** "Immediate Help. Maximum Support."
+### 📅 **Appointment Management**
+- Book appointments with doctors and lawyers
+- View upcoming and past appointments
+- Reschedule and cancel appointments
+- Appointment history tracking
 
-## Sections
+### 🚨 **Emergency Reporting**
+- Submit emergency incident reports
+- Document incidents with photos
+- Location-based reporting
+- Professional assistance coordination
 
-1. **Hero Section**: Eye-catching introduction with countdown timer
-2. **Features**: Showcase of GoMAXPAIN's key features
-3. **About**: Information about the platform and mission
-4. **Contact**: Early access signup form
-5. **Footer**: Copyright and tagline
+### 👤 **User Profile Management**
+- Complete profile information
+- Emergency contacts management
+- Preferences and settings
+- Privacy controls
 
-## How to Use
+## 🛠️ Tech Stack
 
-1. Open `index.html` in your web browser
-2. The page will load with all styling and functionality included
-3. The countdown timer will automatically start counting down from 30 days
-4. Customize the content, colors, and images as needed
+### **Frontend**
+- **React 18** with TypeScript
+- **Tailwind CSS** for responsive design
+- **Vite** for fast development and building
+- **Lucide React** for icons
+- **Context API** for state management
 
-## Customization
+### **Backend**
+- **Node.js** with Express.js
+- **MongoDB** with Mongoose ODM
+- **JWT** for authentication
+- **bcryptjs** for password hashing
+- **express-validator** for input validation
+- **CORS** enabled for cross-origin requests
 
-### Colors
-The main color scheme uses:
-- Primary Orange: `#ff6600`
-- Secondary Orange: `#ff8800`
-- Black: `#000000`
-- White: `#ffffff`
+## 🚀 Quick Start
 
-### Video Background
-- Currently uses a sample video from sample-videos.com
-- You can replace the video source with your own video file
-- The video automatically loops and is muted for better user experience
+### Prerequisites
+- **Node.js** (v16 or higher)
+- **npm** or **yarn**
+- **MongoDB** (local or cloud instance)
 
-### Countdown Timer
-- Set to 30 days from the current date
-- Includes a progress bar showing launch progress
-- Automatically updates every second
-- Shows "LAUNCHED!" when countdown reaches zero
-
-### Images
-- The page includes your existing image: `01def668-d06d-46a8-b874-cb8e0d301480.webp`
-- You can replace or add more images as needed
-
-### Content
-- Update the text content in the HTML file
-- Modify the features, about section, and contact information
-- Change the logo and company name
-
-## Browser Compatibility
-
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-
-## File Structure
-
-```
-gomax/
-├── index.html          # Main landing page
-├── README.md          # This file
-├── 01def668-d06d-46a8-b874-cb8e0d301480.webp  # Your image
-├── Gomaxpain2.pdf     # Your PDF file
-└── WhatsApp Image 2025-05-03 at 12.07.28 AM.jpeg  # Your image
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd gomaxpain
 ```
 
-## Technical Features
+### 2. Backend Setup
+```bash
+cd backend
 
-- **Video Background**: Full-screen video with overlay
-- **Countdown Timer**: Real-time countdown with progress tracking
-- **Smooth Scrolling**: Navigation with smooth scroll effects
-- **Scroll Animations**: Elements fade in as you scroll
-- **Responsive Design**: Mobile-first approach
-- **Interactive Elements**: Hover effects and form validation
+# Install dependencies
+npm install
 
-## Next Steps
+# Create environment configuration
+# Copy config.js and modify as needed
 
-1. **Customize Content**: Update the text and images to match your brand
-2. **Replace Video**: Add your own video background
-3. **Add Domain**: Host it on a web server with your domain name
-4. **SEO Optimization**: Add meta tags and optimize for search engines
-5. **Analytics**: Add Google Analytics or similar tracking
-6. **Contact Form**: Connect the contact form to your email service
-7. **Launch Date**: Set the actual launch date for the countdown timer
+# Start MongoDB (if running locally)
+mongod
 
-## Launch Countdown
-
-The countdown timer is currently set to count down from 30 days from when the page is loaded. To set a specific launch date:
-
-1. Open `index.html`
-2. Find the JavaScript section
-3. Modify the `targetDate` variable in the `updateCountdown()` function
-4. Set it to your desired launch date
-
-Example:
-```javascript
-const targetDate = new Date('2024-12-31T00:00:00'); // Set to December 31, 2024
+# Start development server
+npm run dev
 ```
 
-Enjoy your GoMAXPAIN landing page! 🚀 
+The backend will be available at `http://localhost:5000`
+
+### 3. Frontend Setup
+```bash
+# In a new terminal, from project root
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The frontend will be available at `http://localhost:5173`
+
+## 📁 Project Structure
+
+```
+gomaxpain/
+├── backend/                 # Node.js backend API
+│   ├── config.js           # Configuration settings
+│   ├── server.js           # Main server file
+│   ├── models/             # MongoDB models
+│   │   └── User.js         # User schema and methods
+│   ├── routes/             # API route handlers
+│   │   ├── auth.js         # Authentication routes
+│   │   ├── user.js         # User management routes
+│   │   ├── appointment.js  # Appointment routes
+│   │   ├── doctor.js       # Doctor routes
+│   │   └── lawyer.js       # Lawyer routes
+│   └── middleware/         # Custom middleware
+│       └── auth.js         # Authentication middleware
+├── src/                    # React frontend source
+│   ├── components/         # Reusable UI components
+│   │   ├── common/         # Common components
+│   │   │   ├── Header.tsx  # App header
+│   │   │   ├── Sidebar.tsx # Navigation sidebar
+│   │   │   └── ...         # Other components
+│   │   └── ui/             # Base UI components
+│   ├── contexts/           # React contexts
+│   │   └── AuthContext.tsx # Authentication context
+│   ├── screens/            # Application screens
+│   │   ├── Auth/           # Authentication screens
+│   │   ├── Onboarding/     # Onboarding flow
+│   │   ├── Main/           # Main application
+│   │   ├── Doctors/        # Doctor-related screens
+│   │   ├── Lawyers/        # Lawyer-related screens
+│   │   └── ...             # Other screens
+│   ├── services/           # API services
+│   │   └── api.ts          # API integration
+│   └── styles/             # CSS and styling
+└── README.md               # This file
+```
+
+## 🔌 API Endpoints
+
+### Authentication
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/login` - User login
+- `POST /api/auth/verify-email` - Email verification
+- `POST /api/auth/forgot-password` - Password reset request
+- `POST /api/auth/reset-password` - Password reset
+- `GET /api/auth/me` - Get current user
+
+### User Management
+- `POST /api/user/complete-onboarding` - Complete onboarding
+- `PUT /api/user/profile` - Update profile
+- `PUT /api/user/preferences` - Update preferences
+- `POST /api/user/emergency-contacts` - Add emergency contact
+
+### Appointments
+- `GET /api/appointments` - Get user appointments
+- `POST /api/appointments` - Create appointment
+- `PUT /api/appointments/:id` - Update appointment
+- `DELETE /api/appointments/:id` - Cancel appointment
+
+### Professionals
+- `GET /api/doctors` - Get doctors list
+- `GET /api/lawyers` - Get lawyers list
+- `GET /api/doctors/:id` - Get doctor details
+- `GET /api/lawyers/:id` - Get lawyer details
+
+## 🎨 Responsive Design
+
+The application is built with a **mobile-first approach** and includes:
+
+- **Responsive breakpoints**: Mobile (<640px), Tablet (640px-1023px), Desktop (≥1024px)
+- **Adaptive layouts**: Components automatically adjust to screen size
+- **Touch-friendly interactions**: Optimized for mobile devices
+- **Responsive typography**: Text scales appropriately per screen size
+- **Flexible grids**: Layouts adapt from single-column to multi-column
+
+## 🔒 Security Features
+
+- **Password hashing** with bcryptjs
+- **JWT token authentication**
+- **Input validation** with express-validator
+- **CORS protection**
+- **Protected routes** with middleware
+- **Secure password requirements**
+
+## 🧪 Testing the Application
+
+### 1. **User Registration Flow**
+1. Navigate to the signup screen
+2. Fill in user information
+3. Accept terms and conditions
+4. Submit the form
+5. Verify email with the provided code
+
+### 2. **Onboarding Process**
+1. Complete welcome screen
+2. Review features
+3. Grant necessary permissions
+4. Complete onboarding
+
+### 3. **Main Application**
+1. Access dashboard
+2. Browse doctors and lawyers
+3. Book appointments
+4. Submit emergency reports
+5. Manage profile and settings
+
+## 🚀 Production Deployment
+
+### Backend
+1. Set proper environment variables
+2. Use production MongoDB instance
+3. Enable HTTPS
+4. Implement rate limiting
+5. Add logging and monitoring
+
+### Frontend
+1. Build production bundle: `npm run build`
+2. Deploy to CDN or hosting service
+3. Configure environment variables
+4. Enable error tracking
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📝 License
+
+This project is licensed under the ISC License.
+
+## 🆘 Support
+
+For issues and questions:
+1. Check the documentation
+2. Review existing issues
+3. Create a new issue with detailed information
+
+## 🎯 Roadmap
+
+- [ ] Real-time chat functionality
+- [ ] Push notifications
+- [ ] Payment integration
+- [ ] Video consultations
+- [ ] Document management
+- [ ] Multi-language support
+- [ ] Advanced analytics
+- [ ] Mobile app development
+
+---
+
+**GoMAXPAIN** - Connecting you with trusted professionals when you need them most. 🚑⚖️🏥
